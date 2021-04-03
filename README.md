@@ -1,6 +1,6 @@
 # LKM Hijacking Framework
 
-- a small framework for hooking functions and syscalls for linux kernel module rootkits
+- a small framework for hooking functions and syscalls for linux kernel module rootkits on linux kernel 5.7+
 
 ***tested on:***
 ```
