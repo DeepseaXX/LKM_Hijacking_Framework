@@ -1,4 +1,4 @@
-# LKM Hijacking Framework
+# LKM Hijacking Framework (under construction)
 
 - a small framework for hooking functions and syscalls for linux kernel module rootkits on linux kernel 5.7+
 
