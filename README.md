@@ -10,7 +10,7 @@ Linux SniperX-D 5.8.0-48-generic #54~20.04.1-Ubuntu SMP Sat Mar 20 13:40:25 UTC 
 
 ### example for hiding packets (hooking packet_rcv):
 
-a code sample from see src/packet_hide.c:
+a code sample from src/packet_hide.c:
 ```c
 #include <linux/netfilter.h>
 #include "function_hooking.h"
