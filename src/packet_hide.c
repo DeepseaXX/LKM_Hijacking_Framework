@@ -8,21 +8,21 @@ struct hooked_function packet_rcv_spkt;
 
 int fake_tpacket_rcv(struct sk_buff *skb, struct net_device *dev,struct packet_type *pt, struct net_device *orig_dev)
 {
-	pr_info("im called! tpacket");
+	pr_info("im called! tpacket_rcv");
 	consume_skb(skb); //clear the packet
 	return 1;
 }
 
 int fake_packet_rcv_spkt(struct sk_buff *skb, struct net_device *dev,struct packet_type *pt, struct net_device *orig_dev)
 {
-	pr_info("im called! tpacket");
+	pr_info("im called! packet_rcv_spkt");
 	consume_skb(skb); //clear the packet
 	return 1;
 }
 
 int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev,struct packet_type *pt, struct net_device *orig_dev)
 {
-	pr_info("im called! tpacket");
+	pr_info("im called! packet_rcv");
 	consume_skb(skb); //clear the packet
 	return 1;
 }
