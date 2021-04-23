@@ -11,13 +11,11 @@ static struct kprobe kp = {
 
 unsigned long new_kallsyms_lookup_name(const char *name){
 	if (kln_pointer == NULL){
-		
 	    register_kprobe(&kp);
 
 	    kln_pointer = (unsigned long (*)(const char *name)) kp.addr;
 
 	    unregister_kprobe(&kp);
 	}
-
 	return kln_pointer(name);
 }

@@ -20,8 +20,11 @@ $(KERNEL_MODULE)-y 	+= hooking_test.o
 
 # Source
 $(KERNEL_MODULE)-y 	+= src/new_kln.o
+$(KERNEL_MODULE)-y 	+= src/syscall_hooking.o
 $(KERNEL_MODULE)-y 	+= src/packet_hide.o
 $(KERNEL_MODULE)-y 	+= src/function_hooking.o
+$(KERNEL_MODULE)-y 	+= src/open_hook.o
+
 
 ccflags-y	:= -I$(SRCS_H) 
 

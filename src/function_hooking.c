@@ -8,8 +8,7 @@ char assembly_jump_opc[assembly_len] = {0x48, 0xb8, 0x00, 0x00, 0x00, 0x00, 0x00
 //ret
 
 //https://jm33.me/hook-system-calls-in-linux-5x.html
-static inline void
-write_cr0_forced(unsigned long val)
+static inline void write_cr0_forced(unsigned long val)
 {
     unsigned long __force_order;
 
@@ -19,18 +18,15 @@ write_cr0_forced(unsigned long val)
         : "+r"(val), "+m"(__force_order));
 }
 
-static inline void
-protect_memory(void)
+static inline void protect_memory(void)
 {
     write_cr0_forced(read_cr0());
 }
 
-static inline void
-unprotect_memory(void)
+static inline void unprotect_memory(void)
 {
     write_cr0_forced(read_cr0() & ~0x00010000);
 }
-
 
 int hook_function(struct hooked_function *f){
 
