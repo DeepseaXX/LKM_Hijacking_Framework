@@ -1,6 +1,6 @@
 # LKM Hijacking Framework (under construction)
 
-- a small framework made for shorting the process of hooking functions and syscalls in linux kernel module rootkits on linux kernel 5.7+
+- a small framework made for shortening the process of hooking functions and syscalls in linux kernel module rootkits on linux kernel 5.7+
 
 ***tested on:***
 ```
