@@ -1,5 +1,7 @@
 # LKM Hijacking Framework (under construction)
 
+### For Educational Purposes Only!!!
+
 - a small framework made for shortening the process of hooking functions and syscalls in linux kernel module rootkits on linux kernel 5.7+
 
 ***tested on:***
